@@ -15,6 +15,8 @@ $(document).ready(function (){
   var medicine = [new Herb(1, -100),new Herb(1, 100)];
   user = new Unit(new HP(1000, $('#user-hp')),medicine);
   enemy = new Unit(new HP(1000, $('#enemy-hp')),[]);
+  user.addHerb(new Herb(1, 100));
+  user.addHerb(new Herb(1, -100));
 
   user.onHerbsCountChanged = function(herbCount) {
     $('#herbsCount').text(' X ' + herbCount);

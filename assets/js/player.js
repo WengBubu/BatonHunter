@@ -22,7 +22,7 @@ var Unit = function(hp,herbs){
     }
 
     this.addHerb = function(herb) {
-        this.herbs.add(herb);
+        this.herbs.push(herb);
     }
 
     function removeherb(herbs,herb){
