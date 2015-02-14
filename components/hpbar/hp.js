@@ -17,9 +17,11 @@ HP.prototype.modifyHP = function(value, type){
 	switch (type){
 		case 1:
 			this.currentHP += value;
+			popHpChange(value);
 			break;
 		case 2:
 			this.currentHP += (this.maxHP * value * 0.01);
+			popHpChange(value* 0.01);
 			break;
 		default:
 		//type error
@@ -44,4 +46,17 @@ HP.prototype.isDead = function() {
 
 HP.prototype.isFull = function() {
 	return (this.currentHP >= this.maxHP);
+}
+
+function popHpChange(value){
+	div = $('<div style="width: 100%; text-align: center;">'+value+'</div>');
+
+	$('#test').append(div);
+
+	setTimeout(
+		function() 
+		{
+			div.remove();
+		} , 500
+	);  
 }
