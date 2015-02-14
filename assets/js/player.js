@@ -21,6 +21,10 @@ var Unit = function(hp,herbs){
         this.onHerbsCountChanged(this.herbs.length);
     }
 
+    this.addHerb = function(herb) {
+        this.herbs.add(herb);
+    }
+
     function removeherb(herbs,herb){
     	for (var i = 0, leng = herbs.length; i < leng; ++i) {
     		if (herb.equals(herbs[i])){

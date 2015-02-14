@@ -8,8 +8,7 @@ var Herb = function(hpType, healVal)
     }
 };
 
-function heal(type, value)
-{
+function heal(type, value) {
 	var herb = new Herb(type, value)
 	user.takeHerb(herb);
 }
