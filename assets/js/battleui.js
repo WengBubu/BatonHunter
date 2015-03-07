@@ -12,13 +12,17 @@ $(document).ready(function (){
   batontimer.start();
   //blood obj init
 
-  var medicine = [new Herb(1, -100),new Herb(1, 100)];
+  var medicine = [new Herb(1, -100),new Herb(1, -100),new Herb(1, 100),new Herb(1,100)];
   user = new Unit(new HP(1000, $('#user-hp')),medicine);
-  enemy = new Unit(new HP(1000, $('#enemy-hp')),[]);
-  user.addHerb(new Herb(1, 100));
-  user.addHerb(new Herb(1, -100));
+  user.onHerbsCountChanged = onHerbsCountChanged;
+  user.onHerbsCountChanged(user.herbs.getCount(new Herb(1, 100)),new Herb(1, 100));
 
-  user.onHerbsCountChanged = function(herbCount) {
-    $('#herbsCount').text(' X ' + herbCount);
+  enemy = new Unit(new HP(1000, $('#enemy-hp')),[]);
+  
+
+  function onHerbsCountChanged(number,herb){
+    if(herb.healVal == 100 && herb.hpType == 1){
+      $('#herbsCount').text(' X ' + number);
+    }
   }
 });
