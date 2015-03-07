@@ -2,8 +2,8 @@
 $("#question").load("components/truefalsequestion/truefalsequestion.html"); 
 
 //global variable declaration
-var enemy;
-var user;
+var enemy = new Unit();
+var user = new Unit();
 
 $(document).ready(function (){
   //count down clock init
@@ -12,10 +12,10 @@ $(document).ready(function (){
   batontimer.start();
   //blood obj init
 
-  var medicine = [new Herb(1, -100),new Herb(1, -100),new Herb(1, 100),new Herb(1,100)];
-  user = new Unit(new HP(1000, $('#user-hp')),medicine);
+  user.setHp(new HP(1000, $('#user-hp')));
+
   user.onHerbsCountChanged = onHerbsCountChanged;
-  user.onHerbsCountChanged(user.herbs.getCount(new Herb(1, 100)),new Herb(1, 100));
+  user.onHerbsCountChanged(user.getHerbsCount(new Herb(1, 100)),new Herb(1, 100));
 
   enemy = new Unit(new HP(1000, $('#enemy-hp')),[]);
   
@@ -26,3 +26,14 @@ $(document).ready(function (){
     }
   }
 });
+
+(function init(){
+  function getHerb(){
+    //TODO:Casey07032015 Refator with a real getter to get init herbs 
+    return [new Herb(1, -100),new Herb(1, -100),new Herb(1, 100),new Herb(1,100)];
+  };
+
+  user.setHerbs(getHerb());
+
+
+})();
